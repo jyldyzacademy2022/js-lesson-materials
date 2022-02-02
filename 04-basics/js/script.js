@@ -1,90 +1,68 @@
-// let user = new Object();
-// const user = {
-//   name: "vasya",
-//   age: 25,
-//   hasCar: true,
-//   "user hobbies": ["swimming", "cooking", "coding"],
-//   address: [],
+// условие ? выражение1 : выражение2
+
+// let user = "petee";
+
+// user == "pete" ? "Pete" : "Not Pete";
+
+// greet("john");
+
+// function greet(name = "Unknown user") {
+//   console.log(`Hello ${name}`);
+// }
+
+// const hi = function () {
+//   console.log(`Hello`);
 // };
 
-// console.log(user["user hobbies"][1]);
+// hi();
 
-// user.address.push("Bishkek, Sovetskay 15");
+// const sum = (a, b) => {
+//   let result = a + b;
+//   return result;
+// };
 
-// console.log(user.address);
+// console.log(sum(10, 10));
 
-// delete user.address;
+// const divide = (a, b) => a / b;
+// console.log(divide(10, 2));
 
-// console.log(user.address);
+// let i = 0;
+// while (i < friends.length) {
+//   console.log(friends[i].toUpperCase());
 
-// user.name = "petya";
-
-// console.log(user.name);
-
-// console.log(Object.values(user));
-
-// let a = "a";
-// let b = "b";
-
-// if (a < b) {
-//   console.log("Меньше");
-// } else if (a == b) {
-//   console.log("Равно");
+//   i++;
 // }
 
-// console.log(a === b);
-
-//truthy
-// все что не falsy
-
-// falsy
-// ""
-// undefined
-// 0
-// false
-// null
-
-// let userAge = false;
-
-// && --> and (И)
-// || --> or (или)
-// ! --> not (не)
-
-// if (userAge < 14) {
-//   console.log("baby");
-// } else if (userAge >= 14 && userAge < 18) {
-//   console.log("teenage");
-// } else if (userAge >= 18 && userAge < 35) {
-//   console.log("adult");
-// } else {
-//   console.log("old");
+// for (let i = 0; i < friends.length; i++) {
+//   if (friends[i] === "pete") {
+//     continue;
+//   } else {
+//     console.log(friends[i]);
+//   }
 // }
 
-// console.log(!userAge);
+// for (let i = 1; i <= 20; i++) {
+//   if (i % 2 === 0) {
+//     if (i === 10) {
+//       continue;
+//     } else {
+//       console.log(i);
+//     }
+//   }
+// }
 
-let a = 10;
-let b = 20;
+// let i = 12;
 
-// console.log(a + b);
+// do {
+//   console.log(i);
+//   i++;
+// } while (i < 10);
 
-let c = 20;
-let d = 20;
-// console.log(c + d);
+const friends = ["masha", "john", "mary", "akmat", "pete", "tashmat"];
 
-function greet() {
-  console.log("hello");
-}
+friends.forEach((friend) => console.log(friend));
 
-// greet();
-
-function calcSum(num1, num2) {
-  let sum = num1 + num2;
-
-  return sum;
-}
-
-let sum = calcSum(a, b);
-console.log(sum);
-
-calcSum(c, d);
-calcSum(100, 200);
+// foreach()
+// map()
+// reduce()
+// filter()
