@@ -17,7 +17,6 @@ function loadEventListeners() {
 
 function getTasks() {
   let tasks;
-
   if (localStorage.getItem("tasks") === null) {
     tasks = [];
   } else {
@@ -40,8 +39,6 @@ function getTasks() {
 }
 
 function clearTasks() {
-  // taskList.innerHTML = "";
-
   while (taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
   }
@@ -68,7 +65,9 @@ function removeTaskFromLocalStorage(taskItem) {
   if (localStorage.getItem("tasks") === null) {
     tasks = [];
   } else {
-    tasks.JSON.parse(localStorage.getItem("tasks"));
+    // tasks.JSON.parse(localStorage.getItem("tasks"));
+
+    tasks = JSON.parse(localStorage.getItem("tasks"));
   }
 
   tasks.forEach((task, index) => {
