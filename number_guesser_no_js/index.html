@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Угадай число</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+      integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Игра "Угадай число"</h1>
+      <div id="game">
+        <p>
+          Угадайте число от <span class="min-num"></span> до
+          <span class="max-num"></span>. У вас есть 3 попытки.
+          <input type="number" id="guess-input" placeholder="Введите число" />
+          <button id="guess-btn" type="submit">Играть</button>
+          <p class="message"></p>
+        </p>
+      </div>
+    </div>
+    <script src="js/app.js"></script>
+  </body>
+</html>
