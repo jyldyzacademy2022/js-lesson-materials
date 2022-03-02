@@ -28,25 +28,6 @@ const posts = [
   },
 ];
 
-function createPost(post, callback) {
-  setTimeout(() => {
-    posts.push(post);
-    callback();
-  }, 3000);
-}
-
-function getPosts() {
-  setTimeout(() => {
-    let output = "";
-
-    posts.forEach((post) => {
-      output += `<li>${post.title}</li>`;
-    });
-
-    document.body.innerHTML = output;
-  }, 1000);
-}
-
 /* function createPost(post) {
   setTimeout(() => {
     posts.push(post);
@@ -64,6 +45,39 @@ function getPosts() {
     document.body.innerHTML = output;
   }, 1000);
 } */
+
+function createPost(post) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      posts.push(post);
+
+      const error = false;
+
+      if (!error) {
+        resolve();
+      } else {
+        reject(error);
+      }
+    }, 3000);
+  });
+}
+
+function getPosts() {
+  setTimeout(() => {
+    let output = "";
+
+    posts.forEach((post) => {
+      output += `<li>${post.title}</li>`;
+    });
+
+    document.body.innerHTML = output;
+  }, 1000);
+}
+
 getPosts();
 
-createPost({ title: "Post 3 title", body: "Post 3 body text" }, getPosts);
+createPost({ title: "Post 3 title", body: "Post 3 body text" })
+  .then(getPosts)
+  .catch((error) => {
+    console.log(error);
+  });
