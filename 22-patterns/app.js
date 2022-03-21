@@ -125,47 +125,100 @@
 // });
 
 // observer
-function EventObserver() {
-  this.observers = [];
-}
+// function EventObserver() {
+//   this.observers = [];
+// }
 
-EventObserver.prototype = {
-  subscribe: function (fn) {
-    this.observers.push(fn);
-    console.log(`Subscribed to: ${fn.name}`);
+// EventObserver.prototype = {
+//   subscribe: function (fn) {
+//     this.observers.push(fn);
+//     console.log(`Subscribed to: ${fn.name}`);
+//   },
+
+//   unsubscribe: function (fn) {
+//     this.observers = this.observers.filter((item) => {
+//       if (item !== fn) {
+//         return item;
+//       }
+//     });
+
+//     console.log(`Unsubscribed from ${fn.name}`);
+//   },
+
+//   fire: function () {
+//     this.observers.forEach((item) => {
+//       item.call();
+//     });
+//   },
+// };
+
+// const click = new EventObserver();
+
+// document.querySelector(".sub-ms").addEventListener("click", () => {
+//   click.subscribe(getCurrentMilliseconds);
+// });
+
+// document.querySelector(".unsub-ms").addEventListener("click", () => {
+//   click.unsubscribe(getCurrentMilliseconds);
+// });
+
+// document.querySelector(".fire").addEventListener("click", () => {
+//   click.fire();
+// });
+
+// const getCurrentMilliseconds = function () {
+//   console.log(`Current ms: ${new Date().getMilliseconds()}`);
+// };
+
+// Mediator
+const User = function (name) {
+  this.name = name;
+  this.chatroom = null;
+};
+
+User.prototype = {
+  send: function (message, to) {
+    this.chatroom.send(message, this, to);
   },
 
-  unsubscribe: function (fn) {
-    this.observers = this.observers.filter((item) => {
-      if (item !== fn) {
-        return item;
+  receive: function (message, from) {
+    console.log(`${from.name} to ${this.name}: ${message}`);
+  },
+};
+
+const ChatRoom = function () {
+  let users = {};
+
+  return {
+    register: function (user) {
+      users[user.name] = user;
+      user.chatroom = this;
+    },
+
+    send: function (message, from, to) {
+      if (to) {
+        to.receive(message, from);
+      } else {
+        for (key in users) {
+          if (users[key] !== from) {
+            users[key].receive(message, from);
+          }
+        }
       }
-    });
-
-    console.log(`Unsubscribed from ${fn.name}`);
-  },
-
-  fire: function () {
-    this.observers.forEach((item) => {
-      item.call();
-    });
-  },
+    },
+  };
 };
 
-const click = new EventObserver();
+const john = new User("john");
+const pete = new User("pete");
+const bob = new User("bob");
 
-document.querySelector(".sub-ms").addEventListener("click", () => {
-  click.subscribe(getCurrentMilliseconds);
-});
+const chatroom = new ChatRoom();
 
-document.querySelector(".unsub-ms").addEventListener("click", () => {
-  click.unsubscribe(getCurrentMilliseconds);
-});
+chatroom.register(john);
+chatroom.register(pete);
+chatroom.register(bob);
 
-document.querySelector(".fire").addEventListener("click", () => {
-  click.fire();
-});
-
-const getCurrentMilliseconds = function () {
-  console.log(`Current ms: ${new Date().getMilliseconds()}`);
-};
+john.send("Hello Pete", pete);
+pete.send("Hello Bob", bob);
+bob.send("Hello everyone");
