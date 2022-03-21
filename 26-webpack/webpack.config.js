@@ -19,10 +19,8 @@ module.exports = {
     open: true,
     hot: true,
   },
-
-  // loader --> for files
-
-  modules: {
+  // loaders --> to make webpack understand diff file types
+  module: {
     rules: [
       // css
       { test: /\.css/, use: ["style-loader", "css-loader"] },
@@ -41,12 +39,10 @@ module.exports = {
       },
     ],
   },
-
-  // plugin --> to do more things
-
+  // plugins --> allow to do more things
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Webpack Demo",
+      title: "Webpack demo",
       filename: "index.html",
       template: path.resolve(__dirname, "src/index.html"),
     }),
